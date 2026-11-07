@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleQuestion, faCircleXmark, faCloudUpload, faCoins, faEarthAsia, faEllipsisVertical, faGear, faKeyboard, faMagnifyingGlass, faSignOut, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCircleQuestion, faCircleXmark, faCoins, faEarthAsia, faEllipsisVertical, faGear, faKeyboard, faMagnifyingGlass, faSignOut, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'
@@ -12,6 +12,8 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
+import { UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -117,7 +119,7 @@ function Header() {
                         <>
                             <Tippy trigger='click' content="Upload video" placement='bottom'>
                                 <Button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload}/>
+                                    <UploadIcon />
                                 </Button>
                             </Tippy>
                         </>
@@ -133,7 +135,7 @@ function Header() {
                         onChange={handleMenuChange}
                     >
                         {currentuser ? (
-                            <img
+                            <Image
                                 src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/avatar_vo_tri_a49436c5de.jpg"
                                 className={cx('user-avatar')}
                                 alt="Siuuuuu"
