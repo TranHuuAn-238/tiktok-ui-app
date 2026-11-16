@@ -52,9 +52,17 @@ function Search() {
         setShowResult(false);
     }
 
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
+    }
+
     return (
         <HeadlessTippy
-            visible={showResult && searchResult.length > 0}
+            visible={showResult && searchResult && searchResult.length > 0}
             interactive
             render={attrs => (
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
@@ -69,14 +77,14 @@ function Search() {
             onClickOutside={handleHideResult}
         >
             <div className={cx('search')}>
-                <input ref={inputRef} value={searchValue} type="text" placeholder="Search accounts and videos" spellCheck={false} onChange={(e) => setSearchValue(e.target.value)} onFocus={() => setShowResult(true)} />
+                <input ref={inputRef} value={searchValue} type="text" placeholder="Search accounts and videos" spellCheck={false} onChange={handleChange} onFocus={() => setShowResult(true)} />
                 {!!searchValue && !loading && (
                     <button className={cx('clear')} onClick={handleClear}>
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon />
                 </button>
             </div>
